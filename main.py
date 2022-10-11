@@ -1,9 +1,12 @@
 from tkinter import Tk, PhotoImage, Canvas
-from time import sleep
 from threading import Thread
+import time, random
 
 WINDOW_WIDTH = 380
 WINDOW_HEIGHT = 190
+
+MAX_SPEED = 10
+MIN_SPEED = 5
     
 root = Tk()
 root.overrideredirect(True)
@@ -27,36 +30,43 @@ def threder():
     max_y = SCREEN_HEIGHT - WINDOW_HEIGHT
 
     dir_x = 1
-    dir_y = -1
+    dir_y = 1
+
+    mov_x = random.randint(MIN_SPEED, MAX_SPEED)
+    mov_y = random.randint(MIN_SPEED, MAX_SPEED)
 
     x = 0
     y = 0
 
     run = True
     while run:
-        new_x = x + (1 * dir_x)
-        new_y = y + (1 * dir_y)
+        new_x = x + mov_x * dir_x
+        new_y = y + mov_y * dir_y
 
         if new_y < 0:
             new_y = 0
             dir_y = dir_y * -1
+            mov_y = random.randint(MIN_SPEED, MAX_SPEED)
         elif y > max_y:
             new_y = max_y
             dir_y = dir_y * -1
+            mov_y = random.randint(MIN_SPEED, MAX_SPEED)
 
         if new_x < 0:
             new_x = 0
             dir_x = dir_x * -1
+            mov_x = random.randint(MIN_SPEED, MAX_SPEED)
         elif x > max_x:
             new_x = max_x
             dir_x = dir_x * -1
+            mov_x = random.randint(MIN_SPEED, MAX_SPEED)
 
         x = new_x
         y = new_y
 
         root.geometry(f"{WINDOW_WIDTH}x{WINDOW_HEIGHT}+{x}+{y}")
         
-        sleep(0.001)
+        time.sleep(0.01)
 
 
 th = Thread(target=threder)
