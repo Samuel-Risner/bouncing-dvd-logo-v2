@@ -22,6 +22,7 @@ img = PhotoImage(file="img.png")
 img = img.subsample(13)
 canvas.create_image(0, 0, image=img, anchor="nw")
 
+
 SCREEN_WIDTH = root.winfo_screenwidth()
 SCREEN_HEIGHT = root.winfo_screenheight()
 
