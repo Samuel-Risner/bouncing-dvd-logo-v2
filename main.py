@@ -19,8 +19,8 @@ root.geometry(f"{WINDOW_WIDTH}x{WINDOW_HEIGHT}+0+0")
 canvas = Canvas(root, bg="white", bd=0, highlightthickness=0)
 canvas.pack()
 
-img = PhotoImage(file="img.png")
-img = img.subsample(13)
+# img = PhotoImage(file="img.png")
+# img = img.subsample(13)
 # canvas.create_image(0, 0, image=img, anchor="nw")
 
 SCREEN_WIDTH = root.winfo_screenwidth()
@@ -36,12 +36,20 @@ def change_colour():
 def next_image():
     images = list()
 
-    for colour_matching in ("br", "rg", "gb"):
-        for i in range(1, 12, 1):
-            file = f"images/{colour_matching}_png/{colour_matching}{i}.png"
-            img = PhotoImage(file=file)
-            img = img.subsample(13)
-            images.append(img)
+    def add_img(colour_matching:str, file:int):
+        f = f"images/{colour_matching}_png/{colour_matching}{file}.png"
+        img = PhotoImage(file=f)
+        img = img.subsample(13)
+        images.append(img)
+
+    for i in range(1, 12, 1):
+        add_img("br", i)
+
+    for i in range(11, 0, -1):
+        add_img("gb", i)
+
+    for i in range(11, 0, -1):
+        add_img("rg", i)
 
     while True:
         for img in images:
