@@ -23,6 +23,7 @@ for i in range(0, 10, 1):
     if x != last_name:
         new_name = x
         break
+new_name = new_name + ".exe"
 
 # rename the file
 os.rename(last_name, new_name)
@@ -31,4 +32,4 @@ os.rename(last_name, new_name)
 with open("last_name.txt", "w") as d:
     d.write(new_name)
 
-# os.startfile("main.py")
+os.startfile(new_name)
