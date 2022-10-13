@@ -2,8 +2,11 @@ from tkinter import Tk, PhotoImage, Canvas
 from threading import Thread
 import time, random
 
-WINDOW_WIDTH = 380
-WINDOW_HEIGHT = 190
+WINDOW_WIDTH = 375
+WINDOW_HEIGHT = 175
+IMG_POS_X = 0
+IMG_POS_Y = 0
+SUBSAMPLE_VALUE = 13
 
 MAX_SPEED = 10
 MIN_SPEED = 5
@@ -11,7 +14,7 @@ SPEED = [int(MAX_SPEED / 2), int(MAX_SPEED / 2)]
     
 root = Tk()
 root.overrideredirect(True)
-root.config(bg="white", bd=0, highlightthickness=0)
+# root.config(bg="white", bd=0, highlightthickness=0)
 root.attributes("-transparentcolor", "white")
 root.attributes("-topmost", True)
 root.geometry(f"{WINDOW_WIDTH}x{WINDOW_HEIGHT}+0+0")
@@ -19,16 +22,12 @@ root.geometry(f"{WINDOW_WIDTH}x{WINDOW_HEIGHT}+0+0")
 canvas = Canvas(root, bg="white", bd=0, highlightthickness=0)
 canvas.pack()
 
-# img = PhotoImage(file="img.png")
-# img = img.subsample(13)
-# canvas.create_image(0, 0, image=img, anchor="nw")
-
 SCREEN_WIDTH = root.winfo_screenwidth()
 SCREEN_HEIGHT = root.winfo_screenheight()
 
 def change_colour():
     while True:
-        for _ in range(0, 9, 1):
+        for _ in range(0, 19, 1):
             yield False
 
         yield True
@@ -39,17 +38,26 @@ def next_image():
     def add_img(colour_matching:str, file:int):
         f = f"images/{colour_matching}_png/{colour_matching}{file}.png"
         img = PhotoImage(file=f)
-        img = img.subsample(13)
+        img = img.subsample(SUBSAMPLE_VALUE)
         images.append(img)
 
     for i in range(1, 12, 1):
-        add_img("br", i)
+        add_img("bg", i)
 
     for i in range(11, 0, -1):
         add_img("gb", i)
 
+    for i in range(1, 12, 1):
+        add_img("gr", i)
+
     for i in range(11, 0, -1):
         add_img("rg", i)
+
+    for i in range(1, 12, 1):
+        add_img("rb", i)
+
+    for i in range(11, 0, -1):
+        add_img("br", i)
 
     while True:
         for img in images:
@@ -104,7 +112,7 @@ def threder():
 
         if next(CHANGE_COLOUR_GENERATOR):
             root.attributes("-topmost", True)
-            canvas.create_image(0, 0, image=next(GET_NEXT_IMAGE), anchor="nw")
+            canvas.create_image(IMG_POS_X, IMG_POS_Y, image=next(GET_NEXT_IMAGE), anchor="nw")
 
 th = Thread(target=threder)
 th.start()
