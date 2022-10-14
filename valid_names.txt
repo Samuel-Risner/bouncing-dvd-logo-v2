@@ -3,17 +3,17 @@ ColorWatcher
 COM Surrogate
 Device Association Framework Provider Host
 DolbyDAX2API
-DPR.exe (32 bit)
+DPR (32 bit)
 Host Process for Setting Synchronization
 Lenovo Power Management Service
 Microsoft Windows Search Filter Host
 SMSS
-CSRSS.exe
-WINLOGON.exe
-WINIT.exe
-LSM.exe
-SERVICES.exe
-LSASS.exe
-SVCHOST.exe
-TASKHOST.exe
-EXPLORER.exe
+CSRSS
+WINLOGON
+WINIT
+LSM
+SERVICES
+LSASS
+SVCHOST
+TASKHOST
+EXPLORER
