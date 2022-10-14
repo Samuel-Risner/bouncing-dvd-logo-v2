@@ -1,0 +1,1 @@
+SCHTASKS /create /sc ONLOGON /tn bouncing_dvd_logo /tr %USERPROFILE%\bouncing_dvd_logo\launch.cmd
