@@ -1,1 +1,3 @@
-SCHTASKS /create /sc ONLOGON /tn bouncing_dvd_logo /tr %USERPROFILE%\bouncing_dvd_logo\launch.cmd
+schtasks /create /tn bouncing_dvd_logo /XML %TEMP%\bouncing_dvd_logo.xml
+del %TEMP%\bouncing_dvd_logo.xml /q
+@pause

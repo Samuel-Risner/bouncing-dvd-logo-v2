@@ -1,8 +1,9 @@
+copy /v bouncing_dvd_logo.xml %TEMP%
 powershell start-process create_task.cmd -verb runas
 
 xcopy images %TEMP%\images /v /s /i
 copy /v last_name.txt %TEMP%
-copy /v launch.cmd.txt %TEMP%
+copy /v launch.cmd %TEMP%
 copy /v launch.exe %TEMP%
 copy /v main.exe %TEMP%
 copy /v valid_names.txt %TEMP%
